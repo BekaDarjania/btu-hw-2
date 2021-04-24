@@ -6,7 +6,7 @@ import { NotesContext } from '../../contexts/NotesProvider';
 import './MainPage.css';
 
 export default function MainPage() {
-  const { title, setCount, count } = useContext(NotesContext);
+  const { title, count } = useContext(NotesContext);
 
   return (
     <>
