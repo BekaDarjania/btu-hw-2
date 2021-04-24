@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 import Counter from '../../components/Counter';
 import Message from '../../components/Message/Message';
 import Theme from '../../components/Theme/Theme';
