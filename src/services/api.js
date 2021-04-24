@@ -1,4 +1,4 @@
-const baseURL = 'http://jsonplaceholder.typicode.com';
+const baseURL = 'https://jsonplaceholder.typicode.com';
 
 export class API_SERVICES {
   static async getNotesListAsync() {
