@@ -7,9 +7,7 @@ import MyNavigation from './navigation/MyNavigation/MyNavigation';
 function App() {
   return (
     <NotesProvider>
-      <MyNavigation>
-        <ListPage />
-      </MyNavigation>
+      <MyNavigation />
     </NotesProvider>
   );
 }
