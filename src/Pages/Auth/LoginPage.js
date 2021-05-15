@@ -3,10 +3,10 @@ import { login } from '../../services/auth';
 import { useForm } from 'react-hook-form';
 
 export default function LoginPage() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const { register, handleSubmit } = useForm();
 
-  const SubmitForm = async (data) => {
+  const onSubmit = async (data) => {
+    console.log(data);
     const loggedIn = await login(data);
     localStorage.setItem('auth.token', JSON.stringify(loggedIn.token));
   };
@@ -14,10 +14,7 @@ export default function LoginPage() {
   return (
     <div>
       <form
-        onSubmit={(e) => {
-          e.preventDefault();
-          SubmitForm();
-        }}
+        onSubmit={handleSubmit(onSubmit)}
         style={{
           width: 300,
           margin: 'auto',
@@ -25,14 +22,20 @@ export default function LoginPage() {
         }}>
         <div className="form-group">
           <input
+            defaultValue="eve.holt@reqres.in"
+            required={true}
             type="email"
+            {...register('email', { required: true })}
             className="form-control"
             placeholder="example@gmail.com"
           />
         </div>
         <div className="form-group">
           <input
+            defaultValue="cityslicko"
+            required={true}
             type="password"
+            {...register('password', { required: true })}
             className="form-control"
             placeholder="password"
           />

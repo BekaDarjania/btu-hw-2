@@ -20,6 +20,14 @@ function MyNavigation() {
             className={`m-2 btn ${page === 'list' ? 'btn-danger' : ''}`}>
             Lists
           </button>
+          <button
+            onClick={() => {
+              localStorage.removeItem('auth.token');
+              console.log('Logged Out');
+            }}
+            className={`m-2 btn ${page === 'list' ? 'btn-danger' : ''}`}>
+            Log Out
+          </button>
         </header>
       </div>
       {page === 'home' ? <MainPage /> : <ListPage />}

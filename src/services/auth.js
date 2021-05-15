@@ -10,6 +10,7 @@ export const login = async (credentials) => {
     });
     return await response.json();
   } catch (error) {
+    console.log(error);
     console.trace(error);
   }
 };
