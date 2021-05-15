@@ -1,10 +1,20 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import ListPage from '../../Pages/ListPage';
 import MainPage from '../../Pages/MainPage';
 import './MyNavigation.css';
+import { useHistory } from 'react-router-dom';
 
 function MyNavigation() {
   const [page, setCurrentPage] = useState('home');
+  let history = useHistory();
+
+  // check for auth
+  useEffect(() => {
+    const token = localStorage.getItem('auth.token');
+    if (!token) {
+      history.replace('/');
+    }
+  });
 
   return (
     <div>
@@ -23,9 +33,9 @@ function MyNavigation() {
           <button
             onClick={() => {
               localStorage.removeItem('auth.token');
-              console.log('Logged Out');
+              history.replace('/');
             }}
-            className={`m-2 btn ${page === 'list' ? 'btn-danger' : ''}`}>
+            className={`m-2 btn`}>
             Log Out
           </button>
         </header>

@@ -1,17 +1,22 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import NotesProvider from './contexts/NotesProvider';
-import MyNavigation from './navigation/MyNavigation/MyNavigation';
 import LoginPage from './Pages/Auth/LoginPage';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import MyNavigation from './navigation/MyNavigation';
 
 function App() {
-  function isLoggedIn() {
-    const token = localStorage.getItem('auth.token');
-    return token;
-  }
-
   return (
     <NotesProvider>
-      {!isLoggedIn() ? <LoginPage /> : <MyNavigation />}
+      <Router>
+        <Switch>
+          <Route path="/main">
+            <MyNavigation />
+          </Route>
+          <Route path="/">
+            <LoginPage />
+          </Route>
+        </Switch>
+      </Router>
     </NotesProvider>
   );
 }

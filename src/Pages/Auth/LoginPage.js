@@ -1,14 +1,20 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { login } from '../../services/auth';
 import { useForm } from 'react-hook-form';
+import { Redirect, useHistory } from 'react-router-dom';
 
 export default function LoginPage() {
   const { register, handleSubmit } = useForm();
+  let history = useHistory();
 
   const onSubmit = async (data) => {
     console.log(data);
+
     const loggedIn = await login(data);
-    localStorage.setItem('auth.token', JSON.stringify(loggedIn.token));
+    if (loggedIn) {
+      localStorage.setItem('auth.token', JSON.stringify(loggedIn.token));
+      history.replace('/main');
+    }
   };
 
   return (
